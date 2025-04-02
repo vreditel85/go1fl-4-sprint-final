@@ -5,7 +5,7 @@ import (
 	"strings"
 	"strconv"
 	"fmt"
-	"go1fl-4-sprint-final/internal"
+	"spentcalories"
 )
 
 var (
