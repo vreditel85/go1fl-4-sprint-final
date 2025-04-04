@@ -18,7 +18,7 @@ func parseTraining(data string) (int, string, time.Duration, error) {
 	// ваш код ниже
 	dataSlise := strings.Split(data, ",")
 	if len(dataSlise) != 3 {
-		return 0, "", 0, fmt.Errorf("invalid data: %w", err)
+		return 0, "", 0, fmt.Errorf("invalid data")
 	}
 	// выделяем шаги
 	steps, err :=  strconv.Atoi(dataSlise[0])
@@ -63,7 +63,7 @@ func meanSpeed(steps int, duration time.Duration) float64 {
 	distance := distance(steps)
 	//вычисляем среднюю скорость
 	averageSpeed := distance / duration.Hours()
-	return meanSpeed
+	return averageSpeed
 }
 
 // ShowTrainingInfo возвращает строку с информацией о тренировке.
@@ -110,7 +110,7 @@ const (
 func RunningSpentCalories(steps int, weight float64, duration time.Duration) float64 {
 	// ваш код здесь
 	averageSpeed := meanSpeed(steps, duration)
-	RunningSpentCalories := ((runningCaloriesMeanSpeedMultiplier*meanSpeed)-runningCaloriesMeanSpeedShift) * weight
+	RunningSpentCalories := ((runningCaloriesMeanSpeedMultiplier*averageSpeed)-runningCaloriesMeanSpeedShift) * weight
 	return RunningSpentCalories
 }
 
@@ -131,6 +131,6 @@ const (
 func WalkingSpentCalories(steps int, weight, height float64, duration time.Duration) float64 {
 	// ваш код здесь
 	averageSpeed := meanSpeed(steps, duration)
-	WalkingSpentCalories := ((walkingCaloriesWeightMultiplier * weight) + (meanSpeed*meanSpeed/height)*walkingSpeedHeightMultiplier) * duration.Hours() * minInH
+	WalkingSpentCalories := ((walkingCaloriesWeightMultiplier * weight) + (averageSpeed*averageSpeed/height)*walkingSpeedHeightMultiplier) * duration.Hours() * minInH
 	return WalkingSpentCalories
 }

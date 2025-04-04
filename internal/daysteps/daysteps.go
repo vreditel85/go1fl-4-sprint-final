@@ -17,7 +17,7 @@ func parsePackage(data string) (int, time.Duration, error) {
 	// ваш код ниже
 dataSlise := strings.Split(data, ",")
 if len(dataSlise) != 2 {
-	return 0, 0, fmt.Errorf("invalid data: %w", err)
+	return 0, 0, fmt.Errorf("invalid data")
 }
 // выделяем шаги
 steps, err :=  strconv.Atoi(dataSlise[0])
